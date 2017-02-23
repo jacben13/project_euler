@@ -2,36 +2,34 @@
 
 What is the largest prime factor of the number 600851475143 ?"""
 
-# This method doesn't work because lists of this size are frowny face, need to chunk the list into many chunks
-# and then append each lists prime numbers to another list.
-
+# Initial approach was to find all prime numbers up to n and then attempt to factor n with each number, but that was
+# waaay too inefficient.
 import math
 
-n = 600851475143
-primes = range(2,int(math.sqrt(n))+2)
-c = 2
-p = 0
-x = 2
+def count_factors(number):
+    x = int(math.sqrt(number)) + 2
+    factor_count = 0
+    while x > 1:
+        if (number % x) == 0:
+            factor_count += 1
+        x -= 1
+    return factor_count
 
-print "Starting loop"
-while c < (n / 2):
-    while p < n:
-        p = c * x
-        x += 1
-        try:
-            primes.remove(p)
-        except ValueError:
-            pass
-    p = 0
-    c += 1
-    x = 2
+n = 600851475143
+factors = []
+x = int(math.sqrt(n)) + 2
+
+while x > 1:
+    if (n % x) == 0:
+        print "Found a factor! I found " + str(x) + " all by myself!\n"
+        factors.append(x)
+    x -= 1
 
 primefactors = []
+biggestprime = 0
 
-for y in primes:
-    if (n % y) == 0:
-        print "Found a prime factor! I found " + str(y) + " all by myself!\n"
-        primefactors.append(y)
+for f in factors:
+    if count_factors(f) == 0 and f > biggestprime:
+        biggestprime = f
 
-print "Prime factors are: " + str(primefactors)
-print "\nLargest prime factor is: " + str(primefactors[-1])
+print "Drum roll.... The biggest prime factor of " + str(n) + " is : " + str(biggestprime)
