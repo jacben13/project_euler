@@ -15,21 +15,25 @@ def count_factors(number):
         x -= 1
     return factor_count
 
-n = 600851475143
-factors = []
-x = int(math.sqrt(n)) + 2
+def main():
+    n = 600851475143
+    factors = []
+    x = int(math.sqrt(n)) + 2
 
-while x > 1:
-    if (n % x) == 0:
-        print "Found a factor! I found " + str(x) + " all by myself!\n"
-        factors.append(x)
-    x -= 1
+    while x > 1:
+        if (n % x) == 0:
+            print "Found a factor! I found " + str(x) + " all by myself!\n"
+            factors.append(x)
+        x -= 1
 
-primefactors = []
-biggestprime = 0
+    primefactors = []
+    biggestprime = 0
 
-for f in factors:
-    if count_factors(f) == 0 and f > biggestprime:
-        biggestprime = f
+    for f in factors:
+        if count_factors(f) == 0 and f > biggestprime:
+            biggestprime = f
 
-print "Drum roll.... The biggest prime factor of " + str(n) + " is : " + str(biggestprime)
+    print "Drum roll.... The biggest prime factor of " + str(n) + " is : " + str(biggestprime)
+
+if __name__ == "__main__":
+    main()
