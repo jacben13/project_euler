@@ -16,9 +16,14 @@ def is_prime(number):
         return True
     elif number == 3:
         return True
+    elif number == 1:
+        return False
     x = int(math.sqrt(number)) + 2
-    while x > 1:
-        if (number % x) == 0:
+    if x > number:
+        x = number
+    n = 2
+    while n < x:
+        if (number % n) == 0:
             return False
-        x -= 1
+        n += 1
     return True

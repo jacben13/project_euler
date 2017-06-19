@@ -2,14 +2,14 @@
 
 Find the sum of all the primes below two million."""
 
-from exercise003 import count_factors
+import util
 
-primes = [2 , 3]
+primes = []
 c = 2000000
 n = 2
 
 while n < c:
-    if count_factors(n) == 0:
+    if util.is_prime(n):
         primes.append(n)
         # print n
     if (n % 100000) == 0:
